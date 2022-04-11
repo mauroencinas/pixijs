@@ -152,6 +152,12 @@ class LoaderResource
      */
     loadType: LoaderResource.LOAD_TYPE;
     /**
+    * The custom headers in the request, only works if loadType is xhr
+    *
+    * @type {}
+    */
+    headers:any;
+    /**
      * The type used to load the resource via XHR. If unset, determined automatically.
      *
      * @member {string}
@@ -349,6 +355,7 @@ class LoaderResource
      *      should the data being loaded be interpreted when using XHR?
      * @param {PIXI.LoaderResource.IMetadata} [options.metadata] - Extra configuration for middleware
      *      and the Resource object.
+     * @param {any} - Extra configuration when you choose loadType xhr and want to use custom headers
      */
     constructor(name: string, url: string | string[], options?: {
         crossOrigin?: string | boolean;
@@ -356,6 +363,7 @@ class LoaderResource
         loadType?: LoaderResource.LOAD_TYPE;
         xhrType?: LoaderResource.XHR_RESPONSE_TYPE;
         metadata?: IResourceMetadata;
+        headers?:any;
     })
     {
         if (typeof name !== 'string' || typeof url !== 'string')
@@ -383,6 +391,8 @@ class LoaderResource
         this.timeout = options.timeout || 0;
 
         this.loadType = options.loadType || this._determineLoadType();
+        
+        this.headers = options.headers;
 
         // The type used to load the resource via XHR. If unset, determined automatically.
         this.xhrType = options.xhrType;
@@ -850,6 +860,12 @@ class LoaderResource
         if (this.crossOrigin === 'use-credentials')
         {
             xhr.withCredentials = true;
+        }
+        
+        // adding custom headers
+        if (this.headers && (typeof this.headers === 'array'))
+        {
+            xhr.setRequestHeader(this.headers[0], this.headers[1])
         }
 
         // set the request type and url
