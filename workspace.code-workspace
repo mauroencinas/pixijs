@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "bundles/pixi.js"
+		},
+		{
+			"path": "packages/loaders"
+		}
+	],
+	"settings": {}
+}

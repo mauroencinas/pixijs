@@ -33,8 +33,11 @@ coverage.lcov
 dist
 bundles/*/*.d.ts
 bundles/*/.gitignore
+bundles/*/.git
 out
 packages/**/index.d.ts
+packages/**/.gitignore
+packages/**/.git
 
 # jetBrains IDE ignores
 .idea
