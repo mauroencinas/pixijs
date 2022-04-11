@@ -32,6 +32,7 @@ coverage.lcov
 .nyc_output
 dist
 bundles/*/*.d.ts
+bundles/*/.gitignore
 out
 packages/**/index.d.ts
 

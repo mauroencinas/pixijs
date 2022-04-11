@@ -156,7 +156,7 @@ class LoaderResource
     *
     * @type {}
     */
-    headers:any;
+    headers: any;
     /**
      * The type used to load the resource via XHR. If unset, determined automatically.
      *
@@ -363,7 +363,7 @@ class LoaderResource
         loadType?: LoaderResource.LOAD_TYPE;
         xhrType?: LoaderResource.XHR_RESPONSE_TYPE;
         metadata?: IResourceMetadata;
-        headers?:any;
+        headers?: any;
     })
     {
         if (typeof name !== 'string' || typeof url !== 'string')
@@ -391,7 +391,7 @@ class LoaderResource
         this.timeout = options.timeout || 0;
 
         this.loadType = options.loadType || this._determineLoadType();
-        
+
         this.headers = options.headers;
 
         // The type used to load the resource via XHR. If unset, determined automatically.
@@ -861,11 +861,11 @@ class LoaderResource
         {
             xhr.withCredentials = true;
         }
-        
+
         // adding custom headers
-        if (this.headers && (typeof this.headers === 'array'))
+        if (this.headers && this.headers.isArray)
         {
-            xhr.setRequestHeader(this.headers[0], this.headers[1])
+            xhr.setRequestHeader(this.headers[0], this.headers[1]);
         }
 
         // set the request type and url
